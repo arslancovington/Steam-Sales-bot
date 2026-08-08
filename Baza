@@ -261,7 +261,26 @@
                 <button class="btn-green-glow">ПРОДАТЬ (+3%)</button>
             </div>
         </section>
-    </main>
+            <!-- Модальное окно для продажи -->
+        <div id="sale-modal" class="modal-overlay">
+            <div class="modal-content neon-border-green">
+                <h3 class="neon-text">Продажа предмета</h3>
+                <p id="modal-item-name" style="color: var(--text-muted); font-size: 14px;">Название предмета</p>
+                
+                <div class="price-input-container">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="sale-price-input" placeholder="0.00" step="0.01">
+                </div>
+                <p style="font-size: 11px; color: #889988; margin-bottom: 15px;">Комиссия платформы (3%): будет удержана при успешной сделке.</p>
+
+                <div class="modal-buttons">
+                    <button class="btn-dark-neon" onclick="closeModal()">Отмена</button>
+                    <button class="btn-green-glow" onclick="confirmSale()">Выставить</button>
+                </div>
+            </div>
+        </div>
+
+</main>
 
     <!-- Нижнее меню навигации -->
     <nav class="bottom-nav">
@@ -310,6 +329,18 @@
                 alert("Ошибка! Введите корректную ссылку.");
             }
         }
-    </script>
+           // Функция выставления предмета на продажу
+        function createSale(itemName) {
+            // Запрашиваем у пользователя цену (позже сделаем красивое модальное окно)
+            let price = prompt(`Введи цену продажи для:\n${itemName} ($)`);
+            
+            if (price && !isNaN(price)) {
+                alert(`Успешно!\nПредмет ${itemName} выставлен на маркет за $${price}.`);
+                // В будущем здесь будет код отправки данных на наш Python-сервер
+            } else if (price) {
+                alert("Ошибка! Введи корректную сумму цифрами.");
+            }
+        }
+</script>
 </body>
 </html>
